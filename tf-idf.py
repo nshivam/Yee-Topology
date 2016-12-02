@@ -23,7 +23,7 @@ Change path to directory as you need. Make sure all files are
 
 """
 # declaring a path to the texts
-path = 'C:\\Users\\shivn\\Desktop\\mathfinalproj\\largesample\\'
+path = 'path\\to\\directory'
 
 # number of files in the directory
 num_files = len(os.listdir(path))
@@ -163,13 +163,13 @@ for i in range(0, num_files):
 
 TFIDF_matrix = pd.DataFrame([tfidf[i] for i in range(0, num_files)])
 
-# NEED TO INSERT AN EMPTY FIRST CELL IN THIS ROW OF WORDS.
+# TO DO: NEED TO INSERT AN EMPTY FIRST CELL IN THIS ROW OF WORDS.
 #row_of_words = pd.DataFrame([dict.fromkeys(corpusDict, 0)])
 
 column_of_doc_names = pd.DataFrame((filenames[i] for i in range(0, num_files)))
 
+# Add a column with the names of documents, makes it easier to track after TDA. 
 final = pd.concat([column_of_doc_names, TFIDF_matrix], axis=1)
-
 
 
 def smooth(matrix):
@@ -191,3 +191,4 @@ def smooth(matrix):
 
 
 final.to_csv('LARGE', index=False, header=False)
+final.to_csv('name_of_csv_file', index=False, header=False)
