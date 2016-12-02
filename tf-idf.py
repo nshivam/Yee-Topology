@@ -170,4 +170,24 @@ column_of_doc_names = pd.DataFrame((filenames[i] for i in range(0, num_files)))
 
 final = pd.concat([column_of_doc_names, TFIDF_matrix], axis=1)
 
+
+
+def smooth(matrix):
+    threshold = 0.001
+
+    for word in matrix.columns:
+            
+            num_significant = 0
+
+            column = matrix[word]
+            for freq in column:
+                if freq > threshold:
+                    num_significant += 1
+            if num_significant <= 1:
+                
+                del column;
+
+    print(matrix)
+
+
 final.to_csv('LARGE', index=False, header=False)
