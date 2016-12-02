@@ -1,9 +1,8 @@
 """
-This script takes in a directory/folder of "m" .txt files, performs log-likelihood ratios of words in those documents,
-returns the top "n" words (where n is user-provided), and generates a mxn tf-idf matrix, where each row is a document in
+This script takes in a directory/folder of "m" .txt files and generates a mxn tf-idf matrix, where each row is a document in
 the directory, and each column is a word.
 
-This code was based off of Mike Bernico's tf-idf tutorial, and off of Ayasdi's patent for metric smoothing.
+This code was based off of Ayasdi's patent for metric smoothing.
 
 """
 
