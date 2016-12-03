@@ -162,6 +162,27 @@ for i in range(0, num_files):
 
 TFIDF_matrix = pd.DataFrame([tfidf[i] for i in range(0, num_files)])
 
+
+def smooth(matrix):
+    threshold = 0.000001
+
+    for word in matrix.columns:
+            
+            num_significant = 0
+
+            column = matrix[word]
+           
+            for freq in column:
+                if freq > threshold:
+                    
+                    num_significant += 1
+            if num_significant <= 1:
+                
+                del matrix[word];
+
+    print(matrix)
+smooth(TFIDF_matrix)
+
 # TO DO: NEED TO INSERT AN EMPTY FIRST CELL IN THIS ROW OF WORDS.
 #row_of_words = pd.DataFrame([dict.fromkeys(corpusDict, 0)])
 
@@ -171,22 +192,7 @@ column_of_doc_names = pd.DataFrame((filenames[i] for i in range(0, num_files)))
 final = pd.concat([column_of_doc_names, TFIDF_matrix], axis=1)
 
 
-def smooth(matrix):
-    threshold = 0.001
 
-    for word in matrix.columns:
-            
-            num_significant = 0
-
-            column = matrix[word]
-            for freq in column:
-                if freq > threshold:
-                    num_significant += 1
-            if num_significant <= 1:
-                
-                del column;
-
-    print(matrix)
 
 
 final.to_csv('LARGE', index=False, header=False)
